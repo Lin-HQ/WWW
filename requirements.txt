@@ -1,0 +1,6 @@
+transformers==4.56.0
+tokenizers==0.22.0
+huggingface-hub==0.34.4
+datasets==2.19.2
+safetensors==0.4.4
+sae-lens==5.10.5

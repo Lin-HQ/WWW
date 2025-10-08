@@ -1,0 +1,18 @@
+{
+  "processing_time": "2025-10-08 17:58:30",
+  "activation_ratio": 0.6,
+  "total_layers": 1,
+  "successful_layers": 1,
+  "failed_layers": 0,
+  "layer_success_rate": 1.0,
+  "total_success_vectors": 9,
+  "total_failed_vectors": 0,
+  "vector_success_rate": 1.0,
+  "layer_details": {
+    "layer_18": {
+      "success": true,
+      "success_count": 9,
+      "failed_count": 0
+    }
+  }
+}

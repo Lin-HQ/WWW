@@ -1,0 +1,58 @@
+SAE差值向量处理开始 - layer_18
+处理时间: 2025-10-08 17:58:29
+激活阈值比例: 0.6
+发现 9 个文件夹同时包含normal和contr文件:
+  - contrastive_repeat
+  - contrastive_lowercase
+  - contrastive_format_json
+  - contrastive_capital
+  - contrastive_format_constrained
+  - contrastive_quotation
+  - contrastive_no_comma
+  - contrastive_format_title
+  - contrastive_two_responses
+
+============================================================
+开始处理差值向量 (normal - contr)
+激活阈值比例: 0.6
+============================================================
+✓ contrastive_repeat/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 15
+✓ contrastive_lowercase/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 13
+✓ contrastive_format_json/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 13
+✓ contrastive_capital/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 14
+✓ contrastive_format_constrained/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 22
+✓ contrastive_quotation/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 14
+✓ contrastive_no_comma/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 15
+✓ contrastive_format_title/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 14
+✓ contrastive_two_responses/sae_vector_new_0_6.json 差值处理成功
+    样本数: 500, 选中维度数: 16
+
+============================================================
+差值向量处理完成汇总 - layer_18
+============================================================
+激活阈值比例: 0.6
+可处理文件夹数: 9
+差值处理成功: 9
+差值处理失败: 0
+差值处理成功率: 100.0%
+
+差值处理详情:
+文件夹名		样本数	总维度数	选中维度数	阈值	比例
+---------------------------------------------------------------------------
+contrastive_repeat  	   500	   65536	      15	   300	0.6
+contrastive_lowercase	   500	   65536	      13	   300	0.6
+contrastive_format_json	   500	   65536	      13	   300	0.6
+contrastive_capital 	   500	   65536	      14	   300	0.6
+contrastive_format_constrained	   500	   65536	      22	   300	0.6
+contrastive_quotation	   500	   65536	      14	   300	0.6
+contrastive_no_comma	   500	   65536	      15	   300	0.6
+contrastive_format_title	   500	   65536	      14	   300	0.6
+contrastive_two_responses	   500	   65536	      16	   300	0.6

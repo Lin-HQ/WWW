@@ -1,0 +1,22 @@
+=== SAE编码提取实验汇总 ===
+
+数据集: contrastive_lowercase
+处理字段: suffix_i
+模型: google/gemma-2-2b
+SAE版本: gemma-scope-2b-pt-res-canonical
+SAE ID: layer_18/width_65k/canonical
+设备: cuda
+实验名称: contrastive_lowercase
+输出目录: /data1/lhq/projects/SAGS/FAS/generated/gemma-2-2b/layer_18/contrastive_lowercase
+实验时间: 2025-10-08 17:49:35.061343
+
+实验策略: 只提取SAE编码，不生成文本
+模板策略: 使用QA模板 'Q: {prompt}\nA:'
+SAE层: layer_18
+停止层: layer_19
+Hook名称: blocks.18.hook_resid_post
+- 只运行到SAE层，不进行完整推理
+
+文件说明:
+- sae_encodings.jsonl: 完整的SAE激活值数据 (suffix_i字段)
+- experiment_summary.txt: 实验汇总信息 (suffix_i字段)
