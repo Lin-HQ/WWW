@@ -12,9 +12,7 @@ A research toolkit for controlling and analyzing Large Language Model (LLM) beha
   - [SFD: Semantic Feature Detection](#sfd-semantic-feature-detection)
   - [Utils: Evaluation Tools](#utils-evaluation-tools)
 - [Usage](#usage)
-- [Configuration](#configuration)
-- [Data Format](#data-format)
-- [Citation](#citation)
+- [Example: Capitalization Steering](#example-capitalization-steering)
 
 ## Overview
 
@@ -230,104 +228,6 @@ python Refusal_Rate.py
 
 **Note**: Evaluation tools require OpenAI API access. Configure `API_SECRET_KEY` and `BASE_URL` in the respective files.
 
-## Configuration
-
-### Model and SAE Configuration
-
-Both FAS and SFD components share similar configuration patterns:
-
-```python
-# Model Configuration
-MODEL_NAME = "gemma-2-2b"
-model_name = "google/gemma-2-2b"  # Full HuggingFace model name
-
-# SAE Configuration
-SAE_RELEASE = "gemma-scope-2b-pt-res-canonical"
-SAE_ID = "layer_18/width_65k/canonical"  # Format: layer_X/width_Yk/canonical
-```
-
-### Template Usage
-
-The code supports optional prompt templates:
-
-```python
-USE_TEMPLATE = True  # Enable "Q: {prompt}\nA:" template
-USE_TEMPLATE = False  # Use raw prompts
-```
-
-### Path Configuration
-
-All scripts use project-relative paths:
-
-```python
-PROJECT_ROOT = Path(__file__).parent.parent  # Automatically finds SAGS root
-data_path = PROJECT_ROOT / "data" / "FAS_data" / "I-F"
-output_path = PROJECT_ROOT / "FAS" / "generated"
-```
-
-## Data Format
-
-### FAS Input Format
-
-Contrastive dataset in JSON:
-```json
-{
-  "suffix_i": [
-    "Write a story about adventure...",
-    "Explain quantum mechanics..."
-  ],
-  "contr_suffix_v2": [
-    "Write a story about adventure...",  // Control version
-    "Explain quantum mechanics..."
-  ]
-}
-```
-
-### SFD Input Format
-
-Semantic constraint dataset in JSON:
-```json
-{
-  "if_test": [
-    {
-      "capital": "Write in ALL CAPS: Explain gravity",
-      "lowercase": "write in lowercase: explain gravity",
-      "no_comma": "Explain gravity (without commas)",
-      ...
-    }
-  ],
-  "train": [...]
-}
-```
-
-### Output Format
-
-SAE activations (JSONL):
-```json
-{
-  "prompt_idx": 1,
-  "prompt": "Example prompt text",
-  "sae_activations": {
-    "indices": [100, 523, 1847],
-    "values": [2.34, 1.56, 0.89]
-  },
-  "total_dimensions": 65536,
-  "non_zero_count": 3,
-  "sparsity_ratio": 0.99995
-}
-```
-
-Steering results (JSONL):
-```json
-{
-  "prompt": "Example prompt",
-  "baseline": "Normal generation output",
-  "modification_1.0": "Weakly steered output",
-  "modification_2.5": "Moderately steered output",
-  "modification_5.0": "Strongly steered output"
-}
-```
-
 ## Example: Capitalization Steering
 
 Here's a complete example of using FAS for capitalization steering:
@@ -357,30 +257,3 @@ layers_to_process = [18]
 ```
 
 5. **Evaluate**: Use `utils/I-F_LLM_eval.py` to assess how well the steered outputs follow the capitalization constraint.
-
-## Technical Details
-
-### Memory Management
-
-The codebase includes several optimizations for GPU memory:
-- BFloat16 precision for reduced memory usage
-- Batch processing with configurable batch sizes
-- Automatic cache clearing between batches
-- Stop-at-layer optimization (only computes up to SAE layer)
-
-### Reproducibility
-
-For reproducible results:
-- Temperature set to 0.0 for deterministic generation
-- `do_sample=False` for greedy decoding
-- Fixed random seeds (where applicable)
-
-### Multi-Layer Support
-
-Both FAS and SFD support processing multiple SAE layers:
-```python
-for layer_num in range(0, 26):  # Process all 26 layers
-    current_sae_id = f"layer_{layer_num}/width_65k/canonical"
-    # Process layer...
-```
-
